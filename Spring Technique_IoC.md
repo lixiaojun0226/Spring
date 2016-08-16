@@ -8,14 +8,14 @@
      设计数据库时，考虑数据会存储在不同的数据库中，在获取数据即数据访问时不应只针对特定的数据库的实现特定的数据访问方式，这种方式不利于扩展、移植. 若更换数据库时要变动的不仅是访问数据库的代码，业务逻辑的代码因此也受影响，需要重改，代码量较多，效率低下。 
     ### low style:
     - 从SQL Server中取数据
-    *  数据访问层
+    - 数据访问层
 ```java
     public Class SQLServerDataBase{
           /****从SQL Server中取数据******/
            public list getDataFromSQLServer(){ }
     }
 ```
-    *  业务逻辑层
+*  业务逻辑层
 
 ```java
     public Class Business{
@@ -47,4 +47,4 @@
     上述方法中业务逻辑层的Business类依赖于数据访问层的类***DataBase,类依赖于类，实现依赖于实现，不利于扩展, 不灵活.
      
       高效的方式应该将业务逻辑与数据访问分开，在本例中，即使数据库更换，也不会影响业务逻辑层。
-    ### high style：
+      ### high style：
