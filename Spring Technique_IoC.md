@@ -14,14 +14,16 @@
            public list getDataFromSQLServer(){ }
     }
       业务逻辑层
+
+```java
     public Class Business{
           SQLServerDataBase db = new SQLServerDataBase();
-          
-          public void getData(){
+          public void gevatData(){
              List list = db.getDataFromSQLServer()
           }
     }
-    
+  ```
+  
     - 从DB2中取数据
       数据访问层
     public Class DB2DataBase{
