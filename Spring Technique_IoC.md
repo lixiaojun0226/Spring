@@ -43,6 +43,47 @@
 ```
    上述方法中业务逻辑层的Business类依赖于数据访问层的类%%%DataBase,类依赖于类，实现依赖于实现，不利于扩展, 不灵活.
     
-   高效的方式应该将业务逻辑与数据访问分开，在本例中，即使数据库更换，也不会影响业务逻辑层.
+   高效的方式应该将业务逻辑与数据访问的依赖减少. 实现Business层的可重用. 根据接口编程.
 ### high style:
+```java
+/***定义通用的数据访问接口***/
+public interface DataBase{
+    public void getData() { }
+}
+
+/***具体获取特定数据库的实现类***/
+/***数据访问类***/
+public Class SQLServerDataBase implements DataBase{
+    public void getData(){
+    /***获取SQLServer的数据***/
+    }
+}
+
+/***业务逻辑层***/
+/***依赖于接口***/
+public Class Business{
+    private DataBase db;
+    public void setDataBase(DataBase db){
+       this.db = db;
+    }
+    
+    public void getData(){
+       db.getData();
+    }
+}
+
+/***测试类***/
+public void TestBusiness{
+   Business business = new Business();
+   public void getbusinessdata(){
+      business.setDataBase(new SQLServerDataBase());
+      business.getData();
+   }
+}
+```
+
+  当业务需求更改时，将数据访问的实现类继承业务通用接口，无需更改业务逻辑层即Business类，在最终测试类中将具体DataBase的形参更改为需要的数据访问类即可。这样很方便的实现了程序的重用、扩展、以及高效率的特性。
+
+
+
 
