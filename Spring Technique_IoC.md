@@ -9,6 +9,7 @@
    
     ### low style:
     从SQL Server中取数据
+
     *** 数据访问层 ***
 ```java
     public Class SQLServerDataBase{
@@ -16,8 +17,8 @@
            public list getDataFromSQLServer(){ }
     }
 ```
-    *** 业务逻辑层 ***
 
+    *** 业务逻辑层 ***
 ```java
     public Class Business{
           SQLServerDataBase db = new SQLServerDataBase();
@@ -25,7 +26,7 @@
              List list = db.getDataFromSQLServer()
           }
     }
-  ```
+```
    从DB2中取数据
     *** 数据访问层 ***
 ```java
@@ -33,9 +34,9 @@
           /****从DB2中取数据******/
            public list getDataFromDB2(){ }
     }
-    ```
+ ```
     *** 业务逻辑层 ***
-  ```java  
+```java  
     public Class Business{
           DB2DataBase db = new DB2DataBase();
           
@@ -43,8 +44,9 @@
              List list = db.getDataFromDB2()
           }
     }
-    ```
+```
     上述方法中业务逻辑层的Business类依赖于数据访问层的类***DataBase,类依赖于类，实现依赖于实现，不利于扩展, 不灵活.
      
     高效的方式应该将业务逻辑与数据访问分开，在本例中，即使数据库更换，也不会影响业务逻辑层.
+    
     ### high style：
